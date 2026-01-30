@@ -9,14 +9,13 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
 	"ctf-backend/internal/db"
 	"ctf-backend/internal/handlers"
 	"ctf-backend/internal/middleware"
-
 )
 
 func main() {
@@ -66,25 +65,24 @@ func main() {
 	api := r.Group("/api")
 
 	// AUTH
-	api.POST("/team/login",middleware.RateLimiter(5.0/60.0, 5), handlers.LoginTeamHandler)
-// signup
-	api.POST("/auth/signup",middleware.RateLimiter(5.0/60.0, 5), handlers.Signup)
+	api.POST("/team/login", middleware.RateLimiter(5.0/60.0, 5), handlers.LoginTeamHandler)
+	// signup
+	api.POST("/auth/signup", middleware.RateLimiter(5.0/60.0, 5), handlers.Signup)
 	// TEAM
-	api.POST("/team/create",middleware.RateLimiter(5.0/60.0, 5), handlers.CreateTeam)
-	api.POST("/team/join", middleware.RateLimiter(5.0/60.0, 5),handlers.JoinTeam)
-	api.POST("/submit", middleware.RateLimiter(10.0/60.0, 3),middleware.TeamAuth(), handlers.SubmitChallengeHandler)
-	api.GET("/challenges", middleware.RateLimiter(10.0/60.0, 3),handlers.GetChallenges)
-	api.GET("/leaderboard",middleware.RateLimiter(10.0/60.0, 3), handlers.Leaderboard)
+	api.POST("/team/create", middleware.RateLimiter(5.0/60.0, 5), handlers.CreateTeam)
+	api.POST("/team/join", middleware.RateLimiter(5.0/60.0, 5), handlers.JoinTeam)
+	api.POST("/submit", middleware.RateLimiter(10.0/60.0, 3), middleware.TeamAuth(), handlers.SubmitChallengeHandler)
+	api.GET("/challenges", middleware.RateLimiter(10.0/60.0, 3), handlers.GetChallenges)
+	api.GET("/leaderboard", middleware.RateLimiter(10.0/60.0, 3), handlers.Leaderboard)
 
 	api.Use(middleware.TeamAuth())
-{
-	api.GET("/team/me", handlers.GetMyTeam)
-}
+	{
+		api.GET("/team/me", handlers.GetMyTeam)
+	}
 
-// routes.go
+	// routes.go
 
 	// PROTECTED
-	
 
 	// ======================
 	// SERVER
