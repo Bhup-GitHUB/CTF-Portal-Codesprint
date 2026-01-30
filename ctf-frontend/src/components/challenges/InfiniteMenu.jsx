@@ -939,48 +939,46 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
       tempContainer.style.top = '-9999px';
       document.body.appendChild(tempContainer);
 
-      // Render each folder and convert to canvas
+      // Render each folder image to canvas
       const promises = itemsToRender.map((item, i) => {
         return new Promise((resolve) => {
-          const folderContainer = document.createElement('div');
-          folderContainer.style.width = `${cellSize}px`;
-          folderContainer.style.height = `${cellSize}px`;
-          folderContainer.style.display = 'flex';
-          folderContainer.style.alignItems = 'center';
-          folderContainer.style.justifyContent = 'center';
-          folderContainer.style.background = 'transparent';
-          tempContainer.appendChild(folderContainer);
-
-          // Import and render Folder component dynamically
-          const root = createRoot(folderContainer);
-          root.render(
-            <Folder 
-              color={item.color || '#5227FF'} 
-              size={2.5}
-              items={item.papers || []}
-            />
-          );
-
-          // Wait for render and convert to image
-          setTimeout(() => {
-            html2canvas(folderContainer, {
-              backgroundColor: null,
-              scale: 1,
-              logging: false
-            }).then(canvas => {
-              const x = (i % atlasSize) * cellSize;
-              const y = Math.floor(i / atlasSize) * cellSize;
-              ctx.drawImage(canvas, x, y, cellSize, cellSize);
-              root.unmount();
-              folderContainer.remove();
-              resolve();
-            });
-          }, 100);
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = () => {
+            const x = (i % atlasSize) * cellSize;
+            const y = Math.floor(i / atlasSize) * cellSize;
+            
+            // Calculate centered position and size
+            const maxSize = cellSize * 0.6; // Use 60% of cell size
+            const imgAspect = img.width / img.height;
+            let drawWidth, drawHeight;
+            
+            if (imgAspect > 1) {
+              drawWidth = maxSize;
+              drawHeight = maxSize / imgAspect;
+            } else {
+              drawHeight = maxSize;
+              drawWidth = maxSize * imgAspect;
+            }
+            
+            const drawX = x + (cellSize - drawWidth) / 2;
+            const drawY = y + (cellSize - drawHeight) / 2;
+            
+            ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+            resolve();
+          };
+          img.onerror = () => {
+            console.error('Failed to load image:', item.image);
+            resolve();
+          };
+          img.src = item.image || Folder;
         });
       });
 
       Promise.all(promises).then(() => {
-        document.body.removeChild(tempContainer);
+        if (tempContainer.parentNode) {
+          document.body.removeChild(tempContainer);
+        }
         
         // Update WebGL texture
         if (sketchRef.current) {
