@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import PillNav from "../components/navbar/PillNav";
 import LetterGlitchBackground from "../components/background/LetterGlitch";
 import MemberCard from "../pages/team/MemberCard";
+import { API_ENDPOINTS, fetchWithAuth } from "../config/api";
 
 export default function TeamMemberPage() {
   const [team, setTeam] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/team/me", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("teamToken")}`,
-      },
-    })
+    fetchWithAuth(API_ENDPOINTS.TEAM_ME)
       .then(res => res.json())
       .then(data => setTeam(data))
       .catch(err => console.error(err));

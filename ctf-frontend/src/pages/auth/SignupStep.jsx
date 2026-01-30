@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../../config/api";
 
 export default function SignupStep() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function SignupStep() {
       setLoading(true);
       setError("");
 
-      const res = await fetch("http://localhost:8080/api/auth/signup", {
+      const res = await fetch(API_ENDPOINTS.SIGNUP, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

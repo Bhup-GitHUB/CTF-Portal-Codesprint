@@ -4,6 +4,7 @@ import InfiniteMenu from "../components/challenges/InfiniteMenu.jsx";
 import LetterGlitch from "../components/background/LetterGlitch.jsx";
 import ChallengeModal from "../components/challenges/ChallengeModal";
 import folder from "../assets/folder.png";
+import { API_ENDPOINTS } from "../config/api";
 
 export default function ChallengesPage() {
   const [items, setItems] = useState([]);
@@ -11,7 +12,7 @@ export default function ChallengesPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/challenges")
+    fetch(API_ENDPOINTS.CHALLENGES)
       .then(res => res.json())
       .then(data => {
         const mapped = data.challenges.map(ch => ({

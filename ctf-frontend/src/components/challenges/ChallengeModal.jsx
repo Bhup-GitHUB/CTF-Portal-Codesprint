@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./ChallengeModal.css";
 import DecryptedText from "../effects/DecryptedText";
+import { API_ENDPOINTS, fetchWithAuth } from "../../config/api";
 
 export default function ChallengeModal({ challenge, onClose }) {
   const [answer, setAnswer] = useState("");
@@ -11,11 +12,10 @@ const submitAnswer = async () => {
   setStatus(null);
 
   try {
-    const res = await fetch("http://localhost:8080/api/submit", {
+    const res = await fetchWithAuth(API_ENDPOINTS.SUBMIT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("teamToken")}`,
       },
      body: JSON.stringify({
   code: challenge.code, // ✅ NOT title

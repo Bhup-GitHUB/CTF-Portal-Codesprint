@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_ENDPOINTS } from "../../config/api";
 
 export default function LoginStep() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function LoginStep() {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:8080/api/team/login", {
+      const res = await fetch(API_ENDPOINTS.TEAM_LOGIN, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

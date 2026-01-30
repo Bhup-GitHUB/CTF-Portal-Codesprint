@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import PillNav from "../components/navbar/PillNav";
 import LetterGlitch from "../components/background/LetterGlitch";
+import { API_ENDPOINTS } from "../config/api";
 
 export default function LeaderboardPage() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/leaderboard")
+    fetch(API_ENDPOINTS.LEADERBOARD)
       .then(res => res.json())
       .then(data => setTeams(data.leaderboard || []))
       .catch(err => console.error(err));
