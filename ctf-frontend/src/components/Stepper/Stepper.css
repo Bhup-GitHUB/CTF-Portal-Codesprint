@@ -1,0 +1,205 @@
+/* =============================== */
+/* STEPPER CONTAINER */
+/* =============================== */
+
+.outer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 420px;
+  padding: 1.25rem;
+
+  background: #0a1626;
+
+  border-radius: 10px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(80, 160, 255, 0.25);
+
+  font-family: 'Inter', sans-serif;
+}
+
+.step-circle-container {
+  
+  background: rgba(10, 25, 50, 0.45);
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid rgba(80, 160, 255, 0.35);
+}
+
+
+
+/* =============================== */
+/* STEP INDICATORS */
+/* =============================== */
+
+.step-indicator-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.step-indicator {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  user-select: none;
+
+  background: rgba(10, 25, 50, 0.6);
+  border: 1px solid rgba(80, 160, 255, 0.4);
+  color: #9fd3ff;
+
+  transition: all 0.3s ease;
+}
+
+.step-indicator.active {
+  background: linear-gradient(
+    135deg,
+    rgba(80, 160, 255, 0.9),
+    rgba(0, 120, 255, 0.8)
+  );
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(80, 160, 255, 0.6);
+}
+
+.step-indicator.complete {
+  background: rgba(80, 160, 255, 0.25);
+  color: #b6dcff;
+  border-color: rgba(80, 160, 255, 0.7);
+}
+
+
+/* =============================== */
+/* STEP CONTENT */
+/* =============================== */
+
+.step-content {
+  width: 100%;
+  position: relative;
+}
+
+.step {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: #cfe9ff;
+}
+
+/* =============================== */
+/* FORM ELEMENTS (LOGIN / SIGNUP) */
+/* =============================== */
+
+.step input {
+  
+  padding: 10px 12px;
+
+  background: rgba(10, 25, 50, 0.6);
+  border: 1px solid rgba(80, 160, 255, 0.4);
+  border-radius: 6px;
+
+  color: #e6f1ff;
+  font-size: 13px;
+  outline: none;
+}
+
+.step input::placeholder {
+  color: #9fc9ff;
+  opacity: 0.6;
+}
+
+.step input:focus {
+  border-color: #7cc4ff;
+  box-shadow: 0 0 0 1px rgba(80, 160, 255, 0.6);
+}
+
+/* =============================== */
+/* TITLES */
+/* =============================== */
+
+.step h3 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #7cc4ff;
+}
+
+
+/* =============================== */
+/* FOOTER BUTTONS */
+/* =============================== */
+
+.stepper-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.back-button {
+  background: transparent;
+  color: #9fd3ff;
+  border: 1px solid rgba(0, 140, 255, 0.4);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+
+.back-button:hover {
+  background: rgba(0, 140, 255, 0.15);
+}
+
+.next-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  height: 32px;
+  padding: 5px 14px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  background: rgba(0, 140, 255, 0.15);
+  border: 1px solid rgba(0, 140, 255, 0.4);
+  border-radius: 4px;
+
+  color: #9fd3ff;
+}
+
+.next-button:hover {
+  box-shadow: 0 0 5px #9fd3ff;
+}
+
+
+/* =============================== */
+/* MOBILE SAFETY */
+/* =============================== */
+
+@media (max-width: 420px) {
+  .stepper-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .back-button,
+  .next-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

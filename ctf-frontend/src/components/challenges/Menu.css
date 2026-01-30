@@ -1,0 +1,181 @@
+/* =============================== */
+/* CANVAS */
+/* =============================== */
+
+#infinite-grid-menu-canvas {
+  cursor: grab;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  outline: none;
+  color: antiquewhite;
+ 
+  /* transparent background */
+  background: transparent;
+}
+
+#infinite-grid-menu-canvas:active {
+  cursor: grabbing;
+}
+
+/* =============================== */
+/* ACTION BUTTON (CENTER CTA) */
+/* =============================== */
+
+.action-button {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+
+  background: rgba(9, 119, 209, 0.25);
+  backdrop-filter: blur(8px);
+
+  border-radius: 50%;
+  cursor: pointer;
+
+  border: 2px solid rgba(80, 160, 255, 0.6);
+  box-shadow:
+    0 0 20px rgba(80, 160, 255, 0.6),
+    inset 0 0 10px rgba(80, 160, 255, 0.35);
+}
+
+.action-button-icon {
+  user-select: none;
+  position: relative;
+  color: #e6f1ff;
+  top: 1px;
+  font-size: 26px;
+}
+
+/* =============================== */
+/* ACTION BUTTON STATES */
+/* =============================== */
+
+.action-button.active {
+  bottom: 3.8em;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.action-button.inactive {
+  bottom: -80px;
+  transform: translateX(-50%) scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease;
+}
+
+/* =============================== */
+/* TITLE (LEFT) */
+/* =============================== */
+
+.face-title {
+  user-select: none;
+  position: absolute;
+  font-weight: 800;
+  font-size: 3rem;
+
+  left: 1.6em;
+  top: 50%;
+  transform: translate(20%, -50%);
+
+  color: #7cc4ff;
+  text-shadow:
+    0 0 12px rgba(80, 160, 255, 0.6),
+    0 0 30px rgba(80, 160, 255, 0.3);
+}
+
+.face-title.active {
+  opacity: 1;
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-title.inactive {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.1s ease;
+}
+
+/* =============================== */
+/* DESCRIPTION (RIGHT) */
+/* =============================== */
+
+.face-description {
+  user-select: none;
+  position: absolute;
+  max-width: 12ch;
+
+  top: 50%;
+  right: 1%;
+  transform: translate(0, -50%);
+
+  font-size: 1.1rem;
+  color: #cfe9ff;
+  opacity: 0.85;
+}
+
+.face-description.active {
+  opacity: 1;
+  transform: translate(-90%, -50%);
+  pointer-events: auto;
+  transition: 0.5s ease;
+}
+
+.face-description.inactive {
+  pointer-events: none;
+  transform: translate(-60%, -50%);
+  opacity: 0;
+  transition: 0.1s ease;
+}
+.open-button {
+  position: absolute;
+  bottom: 3.8em;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 22px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+
+  background: rgba(0, 140, 255, 0.15);
+  color: #9fd3ff;
+
+  border: 1px solid rgba(80, 160, 255, 0.6);
+  border-radius: 8px;
+
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.open-button:hover {
+  box-shadow: 0 0 12px rgba(80,160,255,0.8);
+  background: rgba(0, 140, 255, 0.25);
+}
+
+.open-button.inactive {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) scale(0.8);
+}
+
+
+/* =============================== */
+/* RESPONSIVE */
+/* =============================== */
+
+@media (max-width: 1500px) {
+  .face-title,
+  .face-description {
+    display: none;
+  }
+}
