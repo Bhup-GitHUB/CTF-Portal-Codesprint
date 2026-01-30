@@ -61,6 +61,13 @@ const submitAnswer = async () => {
 
         <div className="meta">
           <span>Points: <strong>{challenge.points}</strong></span>
+          {challenge.link && (
+            <span>
+              Link: <a href={challenge.link} target="_blank" rel="noopener noreferrer" style={{ color: "#50a0ff", textDecoration: "underline" }}>
+                <strong>Open Challenge</strong>
+              </a>
+            </span>
+          )}
         </div>
 
         <input
