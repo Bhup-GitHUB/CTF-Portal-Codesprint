@@ -46,7 +46,7 @@ export default function ChallengesPage() {
                   image: ch.image,
                   title: ch.title,
                   description: ch.description,
-                  link: "#",
+                  link: ch.link,
                   onOpen: () => setActiveChallenge(ch), // 👈 IMPORTANT
                 }))}
                 scale={1}
