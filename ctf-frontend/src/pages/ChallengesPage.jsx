@@ -16,7 +16,7 @@ export default function ChallengesPage() {
       .then(res => res.json())
       .then(data => {
         const mapped = data.challenges.map(ch => ({
-          
+          ...ch, // ✅ Spread all challenge properties (title, description, code, points, etc.)
           image: folder,
           onOpen: () => setActiveChallenge(ch)
         }));
