@@ -1,5 +1,5 @@
 import ReflectiveCard from "../components/ui/Card";
-import Stepper, { Step } from "../components/stepper/stepper";
+import Stepper, { Step } from "../components/Stepper/Stepper";
 import LetterGlitch from "../components/background/LetterGlitch";
 
 import LoginStep from "./auth/LoginStep";
