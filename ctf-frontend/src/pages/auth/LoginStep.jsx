@@ -38,7 +38,7 @@ export default function LoginStep() {
       }
 
       // ✅ store team token (MOST IMPORTANT)
-      localStorage.setItem("teamToken", data.teamToken);
+      localStorage.setItem("teamToken", data.token);
       localStorage.setItem("teamName", teamName);
       localStorage.setItem("memberName", memberName);
 
