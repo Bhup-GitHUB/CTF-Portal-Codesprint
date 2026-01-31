@@ -2,10 +2,12 @@
 package handlers
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
 	"ctf-backend/internal/services"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
+
 func GetMyTeam(c *gin.Context) {
 	teamID := c.GetString("teamID")
 

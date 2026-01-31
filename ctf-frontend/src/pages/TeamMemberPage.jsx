@@ -57,7 +57,7 @@ export default function TeamMemberPage() {
             }}
           >
             {team?.members?.map((member, index) => (
-              <MemberCard key={index} member={member} />
+              <MemberCard key={index} member={member} teamName={team.teamName} />
             ))}
           </div>
         </div>

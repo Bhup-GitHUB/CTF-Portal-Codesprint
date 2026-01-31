@@ -1,11 +1,11 @@
 package services
 
 import (
-	
 	"errors"
 	"fmt"
 	"math/rand"
 	"time"
+
 	"github.com/golang-jwt/jwt/v5"
 
 	"ctf-backend/internal/db"
@@ -81,7 +81,7 @@ func CreateTeam(req CreateTeamRequest) (string, string, error) {
 		EventID:          "ctf-2026",
 		Password:         Hash(req.Password),
 		Pin:              pin,
-		Token:            token,              // ✅ STORED
+		Token:            token, // ✅ STORED
 		Members:          []string{req.MemberID},
 		Score:            0,
 		SolvedChallenges: []string{},
@@ -95,7 +95,6 @@ func CreateTeam(req CreateTeamRequest) (string, string, error) {
 
 	return token, pin, nil
 }
-
 
 /* =======================
    JOIN TEAM USING PIN
@@ -160,6 +159,7 @@ func LoginTeam(memberName, teamName string) (string, error) {
 
 	return token, nil
 }
+
 // services/team_service.go
 func GetTeamDetails(teamID string) (*models.Team, error) {
 	ctx, cancel := db.Ctx()
@@ -181,5 +181,3 @@ func GetTeamDetails(teamID string) (*models.Team, error) {
 
 	return &team, nil
 }
-
-
