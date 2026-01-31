@@ -1,6 +1,10 @@
-// import Lanyard from "../team/Lanyard";
+import Lanyard from "./Lanyard";
 
 export default function MemberCard({ member }) {
+  // Handle both string (ID) and object (with name) formats
+  const memberName = typeof member === 'string' ? member : (member?.name || member?.email || 'Unknown Member');
+  const memberId = typeof member === 'string' ? member : (member?.id || member?._id || '');
+
   return (
     <div
       style={{
@@ -17,9 +21,9 @@ export default function MemberCard({ member }) {
       }}
     >
       {/* LANYARD */}
-      {/* <div style={{ width: "100%", height: "380px" }}>
-        <Lanyard />
-      </div> */}
+      <div style={{ width: "100%", height: "380px" }}>
+        <Lanyard memberName={memberName} memberId={memberId} />
+      </div>
 
       {/* MEMBER INFO */}
       <div
@@ -38,7 +42,7 @@ export default function MemberCard({ member }) {
             marginBottom: "6px"
           }}
         >
-          {member.toUpperCase()}
+          {memberName.toUpperCase()}
         </h3>
 
         <p
