@@ -1,0 +1,98 @@
+/* ===================================
+   CHALLENGES PAGE
+   Premium Challenge Grid
+   =================================== */
+
+.challenges-page {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ===================================
+   BACKGROUND
+   =================================== */
+.challenges-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* ===================================
+   CONTENT WRAPPER
+   =================================== */
+.challenges-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.challenges-content {
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.challenges-container {
+    height: 600px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* ===================================
+   LOADING STATE
+   =================================== */
+.challenges-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    color: var(--color-text-secondary, #9fd3ff);
+    gap: var(--space-4, 16px);
+}
+
+.loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(80, 160, 255, 0.2);
+    border-top-color: var(--color-accent, #50a0ff);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: var(--text-sm, 14px);
+    letter-spacing: 0.1em;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+    .challenges-content {
+        padding-top: 100px;
+    }
+
+    .challenges-container {
+        height: 500px;
+    }
+}

@@ -1,0 +1,95 @@
+/* ===================================
+   AUTH PAGE
+   Premium Login/Signup Experience
+   =================================== */
+
+.auth-page {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ===================================
+   BACKGROUND
+   =================================== */
+.auth-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* ===================================
+   CONTENT WRAPPER
+   =================================== */
+.auth-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding: var(--space-4, 16px);
+}
+
+/* ===================================
+   ERROR MESSAGE
+   =================================== */
+.auth-error {
+    color: var(--color-error, #ff6b6b);
+    font-size: var(--text-xs, 12px);
+    padding: var(--space-2, 8px) var(--space-3, 12px);
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: var(--radius-md, 6px);
+    animation: errorShake 0.5s ease;
+}
+
+@keyframes errorShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+/* ===================================
+   SUCCESS MESSAGE
+   =================================== */
+.auth-success {
+    color: var(--color-success, #4ade80);
+    font-size: var(--text-xs, 12px);
+    padding: var(--space-2, 8px) var(--space-3, 12px);
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: var(--radius-md, 6px);
+}
+
+/* ===================================
+   HELPER TEXT
+   =================================== */
+.auth-helper {
+    opacity: 0.6;
+    font-size: var(--text-xs, 12px);
+    margin-top: var(--space-2, 8px);
+    color: var(--color-text-secondary, #9fd3ff);
+    line-height: 1.5;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 480px) {
+    .auth-wrapper {
+        padding: var(--space-3, 12px);
+    }
+}

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PillNav from "../components/navbar/PillNav";
 import LetterGlitch from "../components/background/LetterGlitch";
 import { API_ENDPOINTS } from "../config/api";
+import "./LeaderboardPage.css";
 
 export default function LeaderboardPage() {
   const [teams, setTeams] = useState([]);
@@ -13,76 +14,59 @@ export default function LeaderboardPage() {
       .catch(err => console.error(err));
   }, []);
 
+  const getRankClass = (index) => {
+    if (index === 0) return "rank-1";
+    if (index === 1) return "rank-2";
+    if (index === 2) return "rank-3";
+    return "";
+  };
+
+  const getBadgeClass = (index) => {
+    if (index === 0) return "gold";
+    if (index === 1) return "silver";
+    if (index === 2) return "bronze";
+    return "";
+  };
+
   return (
-    <div style={{ position: "relative", minHeight: "100vh" }}>
-      
+    <div className="leaderboard-page">
       {/* BACKGROUND */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 0 }}>
+      <div className="leaderboard-bg">
         <LetterGlitch />
       </div>
 
       {/* FOREGROUND */}
-      <div style={{ position: "relative", zIndex: 1 }}>
+      <div className="leaderboard-wrapper">
         <PillNav />
 
-        <div
-          style={{
-            paddingTop: "120px",
-            display: "flex",
-            justifyContent: "center"
-          }}
-        >
-          <div
-            style={{
-              width: "700px",
-              maxWidth: "90vw",
-              background: "rgba(10,25,50,0.65)",
-              border: "1px solid rgba(80,160,255,0.4)",
-              borderRadius: "12px",
-              padding: "28px",
-              color: "#cfe9ff"
-            }}
-          >
-            <h1
-              style={{
-                textAlign: "center",
-                letterSpacing: "0.35em",
-                marginBottom: "24px"
-              }}
-            >
-              LEADERBOARD
-            </h1>
+        <div className="leaderboard-card">
+          <div className="leaderboard-header">
+            <h1 className="leaderboard-title">LEADERBOARD</h1>
+          </div>
 
+          <div className="leaderboard-list">
             {teams.map((team, index) => (
               <div
                 key={index}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "14px 18px",
-                  marginBottom: "10px",
-                  borderRadius: "8px",
-                  background:
-                    index === 0
-                      ? "rgba(255,215,0,0.15)"
-                      : "rgba(0,140,255,0.08)",
-                  border:
-                    index === 0
-                      ? "1px solid rgba(255,215,0,0.6)"
-                      : "1px solid rgba(80,160,255,0.3)"
-                }}
+                className={`team-row ${getRankClass(index)}`}
               >
-                <span style={{ letterSpacing: "0.15em" }}>
-                  {index + 1} {team.TeamName}
-                </span>
+                <div className="team-info">
+                  <div className={`rank-badge ${getBadgeClass(index)}`}>
+                    {index + 1}
+                  </div>
+                  <span className="team-name">{team.TeamName}</span>
+                </div>
 
-                <strong><span>Pts: </span>{team.Score}</strong>
+                <div className="team-score">
+                  <span className="label">Pts:</span>
+                  <span className="value">{team.Score}</span>
+                </div>
               </div>
             ))}
 
             {teams.length === 0 && (
-              <p style={{ textAlign: "center", opacity: 0.6 }}>
-                No teams yet.
+              <p className="leaderboard-empty">
+                No teams yet. Be the first to score!
               </p>
             )}
           </div>

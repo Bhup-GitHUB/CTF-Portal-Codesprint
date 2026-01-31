@@ -10,7 +10,7 @@
   position: relative;
   outline: none;
   color: antiquewhite;
- 
+
   /* transparent background */
   background: transparent;
 }
@@ -136,6 +136,7 @@
   opacity: 0;
   transition: 0.1s ease;
 }
+
 .open-button {
   position: absolute;
   bottom: 3.8em;
@@ -158,7 +159,7 @@
 }
 
 .open-button:hover {
-  box-shadow: 0 0 12px rgba(80,160,255,0.8);
+  box-shadow: 0 0 12px rgba(80, 160, 255, 0.8);
   background: rgba(0, 140, 255, 0.25);
 }
 
@@ -174,6 +175,7 @@
 /* =============================== */
 
 @media (max-width: 1500px) {
+
   .face-title,
   .face-description {
     display: none;

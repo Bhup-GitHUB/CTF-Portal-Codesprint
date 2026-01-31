@@ -1,107 +1,234 @@
+/* ===================================
+   PILL NAVIGATION
+   Premium Floating Navbar
+   =================================== */
+
 .pill-nav-container {
   position: fixed;
-  top: 20px;
+  top: var(--space-5, 20px);
   width: 100%;
   display: flex;
   justify-content: center;
-  z-index: 100;
+  z-index: var(--z-sticky, 100);
+  animation: navSlideDown 0.5s ease forwards;
 }
 
-/* NAV BAR */
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   NAV BAR
+   =================================== */
 .pill-nav {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 10px 18px;
-
-  background: rgba(10, 25, 50, 0.9);
-  border: 1px solid rgba(80, 160, 255, 0.35);
-  border-radius: 999px;
-
+  gap: var(--space-4, 18px);
+  padding: var(--space-3, 12px) var(--space-5, 20px);
+  background: rgba(10, 25, 50, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border, rgba(80, 160, 255, 0.35));
+  border-radius: var(--radius-full, 999px);
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(80, 160, 255, 0.2);
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(80, 160, 255, 0.15) inset;
+  transition: all var(--transition-base, 250ms) ease;
 }
 
-/* LOGO */
+.pill-nav:hover {
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(80, 160, 255, 0.2);
+}
+
+/* ===================================
+   LOGO
+   =================================== */
 .pill-logo {
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  color: #9fd3ff;
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-weight: 800;
+  font-size: var(--text-sm, 14px);
+  letter-spacing: 0.15em;
+  color: var(--color-text-secondary, #9fd3ff);
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: var(--space-3, 12px);
+  transition: all var(--transition-fast, 150ms) ease;
+  text-shadow: 0 0 10px rgba(80, 160, 255, 0.3);
 }
 
-/* DESKTOP MENU */
+.pill-logo:hover {
+  color: var(--color-text-white, #ffffff);
+  text-shadow: 0 0 20px rgba(80, 160, 255, 0.6);
+  text-decoration: none;
+}
+
+/* ===================================
+   DESKTOP MENU
+   =================================== */
 .pill-list {
   display: flex;
-  gap: 12px;
+  gap: var(--space-2, 8px);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .pill {
-  padding: 8px 14px;
-  border-radius: 999px;
+  position: relative;
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-full, 999px);
   text-decoration: none;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: #9fd3ff;
-
+  font-size: var(--text-xs, 12px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary, #9fd3ff);
   border: 1px solid transparent;
-  transition: all 0.25s ease;
+  transition: all var(--transition-base, 250ms) ease;
+  overflow: hidden;
+}
+
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(80, 160, 255, 0.2),
+      rgba(40, 120, 255, 0.1));
+  opacity: 0;
+  transition: opacity var(--transition-base, 250ms) ease;
+  border-radius: var(--radius-full, 999px);
 }
 
 .pill:hover {
-  background: rgba(80, 160, 255, 0.15);
-  border-color: rgba(80, 160, 255, 0.4);
+  text-decoration: none;
+  color: var(--color-text-white, #ffffff);
+  border-color: var(--color-border-hover, rgba(80, 160, 255, 0.5));
+}
+
+.pill:hover::before {
+  opacity: 1;
 }
 
 .pill.active {
-  background: linear-gradient(
-    135deg,
-    rgba(80, 160, 255, 0.9),
-    rgba(40, 120, 255, 0.9)
-  );
-  color: #ffffff;
-  box-shadow: 0 0 12px rgba(80, 160, 255, 0.6);
+  background: linear-gradient(135deg,
+      var(--color-accent, rgba(80, 160, 255, 0.9)),
+      var(--color-accent-dark, rgba(40, 120, 255, 0.9)));
+  color: var(--color-text-white, #ffffff);
+  border-color: transparent;
+  box-shadow:
+    0 0 15px rgba(80, 160, 255, 0.5),
+    0 0 30px rgba(80, 160, 255, 0.2);
+  animation: pillGlow 2s ease-in-out infinite;
 }
 
-/* MOBILE */
+@keyframes pillGlow {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(80, 160, 255, 0.5),
+      0 0 30px rgba(80, 160, 255, 0.2);
+  }
+
+  50% {
+    box-shadow:
+      0 0 20px rgba(80, 160, 255, 0.7),
+      0 0 40px rgba(80, 160, 255, 0.3);
+  }
+}
+
+/* ===================================
+   MOBILE MENU BUTTON
+   =================================== */
 .mobile-menu-button {
   background: transparent;
-  color: #9fd3ff;
-  font-size: 20px;
+  color: var(--color-text-secondary, #9fd3ff);
+  font-size: var(--text-xl, 20px);
   border: none;
   cursor: pointer;
+  padding: var(--space-2, 8px);
+  transition: all var(--transition-fast, 150ms) ease;
 }
 
+.mobile-menu-button:hover {
+  color: var(--color-text-white, #ffffff);
+  text-shadow: 0 0 10px rgba(80, 160, 255, 0.6);
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===================================
+   MOBILE MENU
+   =================================== */
 .mobile-menu {
-  margin-top: 10px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: var(--space-3, 12px);
   background: rgba(10, 25, 50, 0.95);
-  border: 1px solid rgba(80, 160, 255, 0.35);
-  border-radius: 12px;
-  padding: 10px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border, rgba(80, 160, 255, 0.35));
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-3, 12px);
   width: 90%;
-  max-width: 300px;
+  max-width: 280px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  animation: mobileMenuIn 0.3s ease forwards;
+}
+
+@keyframes mobileMenuIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }
 
 .mobile-link {
   display: block;
-  padding: 10px;
-  color: #9fd3ff;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  color: var(--color-text-secondary, #9fd3ff);
   text-decoration: none;
-  border-radius: 6px;
-  margin-bottom: 4px;
+  border-radius: var(--radius-md, 8px);
+  margin-bottom: var(--space-1, 4px);
+  font-size: var(--text-sm, 14px);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast, 150ms) ease;
 }
 
 .mobile-link:hover,
 .mobile-link.active {
-  background: rgba(80, 160, 255, 0.2);
+  background: var(--color-accent-subtle, rgba(80, 160, 255, 0.2));
+  color: var(--color-text-white, #ffffff);
+  text-decoration: none;
 }
 
-/* RESPONSIVE */
+.mobile-link.active {
+  background: linear-gradient(135deg,
+      rgba(80, 160, 255, 0.3),
+      rgba(40, 120, 255, 0.2));
+  box-shadow: 0 0 15px rgba(80, 160, 255, 0.2);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
 .desktop-only {
   display: flex;
 }
@@ -114,7 +241,16 @@
   .desktop-only {
     display: none;
   }
+
   .mobile-only {
     display: block;
+  }
+
+  .pill-nav-container {
+    top: var(--space-3, 12px);
+  }
+
+  .pill-nav {
+    padding: var(--space-2, 10px) var(--space-4, 16px);
   }
 }

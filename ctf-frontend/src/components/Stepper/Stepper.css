@@ -1,90 +1,142 @@
-/* =============================== */
-/* STEPPER CONTAINER */
-/* =============================== */
+/* ===================================
+   STEPPER COMPONENT
+   Premium Multi-Step Form
+   =================================== */
 
 .outer-container {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
-
   width: 100%;
-  max-width: 420px;
-  padding: 1.25rem;
-
-  background: #0a1626;
-
-  border-radius: 10px;
+  max-width: 440px;
+  padding: var(--space-5, 1.25rem);
+  background: var(--color-bg-card, rgba(10, 22, 38, 0.95));
+  border-radius: var(--radius-lg, 12px);
   box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.6),
+    0 25px 80px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(80, 160, 255, 0.2),
     inset 0 0 0 1px rgba(80, 160, 255, 0.25);
+  font-family: var(--font-display, 'Inter', sans-serif);
+  animation: stepperEntrance 0.5s ease forwards;
+}
 
-  font-family: 'Inter', sans-serif;
+@keyframes stepperEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .step-circle-container {
-  
-  background: rgba(10, 25, 50, 0.45);
-  border-radius: 10px;
-  padding: 20px;
-  border: 1px solid rgba(80, 160, 255, 0.35);
+  background: rgba(10, 25, 50, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-5, 24px);
+  border: 1px solid var(--color-border, rgba(80, 160, 255, 0.3));
 }
 
-
-
-/* =============================== */
-/* STEP INDICATORS */
-/* =============================== */
-
+/* ===================================
+   STEP INDICATORS
+   =================================== */
 .step-indicator-row {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  margin-bottom: var(--space-5, 20px);
 }
 
 .step-indicator {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  font-size: 12px;
-  font-weight: 600;
-
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full, 50%);
+  font-size: var(--text-xs, 12px);
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   user-select: none;
+  background: rgba(10, 25, 50, 0.7);
+  border: 2px solid var(--color-border, rgba(80, 160, 255, 0.4));
+  color: var(--color-text-secondary, #9fd3ff);
+  transition: all var(--transition-base, 250ms) ease;
+  position: relative;
+}
 
-  background: rgba(10, 25, 50, 0.6);
-  border: 1px solid rgba(80, 160, 255, 0.4);
-  color: #9fd3ff;
-
-  transition: all 0.3s ease;
+.step-indicator:hover {
+  border-color: var(--color-border-hover, rgba(80, 160, 255, 0.7));
+  background: rgba(80, 160, 255, 0.15);
 }
 
 .step-indicator.active {
-  background: linear-gradient(
-    135deg,
-    rgba(80, 160, 255, 0.9),
-    rgba(0, 120, 255, 0.8)
-  );
-  color: #ffffff;
-  box-shadow: 0 0 14px rgba(80, 160, 255, 0.6);
+  background: linear-gradient(135deg,
+      var(--color-accent, rgba(80, 160, 255, 0.95)),
+      var(--color-accent-dark, rgba(0, 120, 255, 0.9)));
+  color: var(--color-text-white, #ffffff);
+  border-color: transparent;
+  box-shadow:
+    0 0 20px rgba(80, 160, 255, 0.6),
+    0 0 40px rgba(80, 160, 255, 0.3);
+  animation: indicatorPulse 2s ease-in-out infinite;
+}
+
+@keyframes indicatorPulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(80, 160, 255, 0.6),
+      0 0 40px rgba(80, 160, 255, 0.3);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(80, 160, 255, 0.8),
+      0 0 50px rgba(80, 160, 255, 0.4);
+  }
 }
 
 .step-indicator.complete {
-  background: rgba(80, 160, 255, 0.25);
-  color: #b6dcff;
-  border-color: rgba(80, 160, 255, 0.7);
+  background: rgba(80, 160, 255, 0.2);
+  color: var(--color-accent-light, #b6dcff);
+  border-color: var(--color-accent, rgba(80, 160, 255, 0.7));
 }
 
+.step-indicator.complete::after {
+  content: '✓';
+  font-size: 14px;
+}
 
-/* =============================== */
-/* STEP CONTENT */
-/* =============================== */
+/* ===================================
+   STEP CONNECTOR
+   =================================== */
+.step-connector {
+  width: 40px;
+  height: 2px;
+  background: rgba(80, 160, 255, 0.2);
+  border-radius: var(--radius-full, 2px);
+  overflow: hidden;
+}
 
+.step-connector-inner {
+  height: 100%;
+  background: linear-gradient(90deg,
+      var(--color-accent, #50a0ff),
+      var(--color-accent-light, #7cc4ff));
+  box-shadow: 0 0 10px rgba(80, 160, 255, 0.5);
+}
+
+/* ===================================
+   STEP CONTENT
+   =================================== */
 .step-content {
   width: 100%;
   position: relative;
@@ -94,106 +146,123 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  color: #cfe9ff;
+  gap: var(--space-4, 18px);
+  color: var(--color-text-primary, #cfe9ff);
 }
 
-/* =============================== */
-/* FORM ELEMENTS (LOGIN / SIGNUP) */
-/* =============================== */
-
+/* ===================================
+   FORM ELEMENTS
+   =================================== */
 .step input {
-  
-  padding: 10px 12px;
-
-  background: rgba(10, 25, 50, 0.6);
-  border: 1px solid rgba(80, 160, 255, 0.4);
-  border-radius: 6px;
-
-  color: #e6f1ff;
-  font-size: 13px;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  background: var(--color-bg-secondary, rgba(10, 25, 50, 0.7));
+  border: 1px solid var(--color-border, rgba(80, 160, 255, 0.4));
+  border-radius: var(--radius-md, 8px);
+  color: var(--color-text-primary, #e6f1ff);
+  font-size: var(--text-sm, 14px);
+  font-family: var(--font-display, 'Inter', sans-serif);
   outline: none;
+  transition: all var(--transition-base, 250ms) ease;
 }
 
 .step input::placeholder {
-  color: #9fc9ff;
-  opacity: 0.6;
+  color: var(--color-text-muted, rgba(159, 201, 255, 0.5));
+}
+
+.step input:hover {
+  border-color: var(--color-border-hover, rgba(80, 160, 255, 0.6));
 }
 
 .step input:focus {
-  border-color: #7cc4ff;
-  box-shadow: 0 0 0 1px rgba(80, 160, 255, 0.6);
+  border-color: var(--color-accent, #7cc4ff);
+  box-shadow:
+    0 0 0 3px rgba(80, 160, 255, 0.15),
+    0 0 20px rgba(80, 160, 255, 0.2);
 }
 
-/* =============================== */
-/* TITLES */
-/* =============================== */
-
+/* ===================================
+   TITLES
+   =================================== */
 .step h3 {
-  margin: 0 0 6px 0;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #7cc4ff;
+  margin: 0 0 var(--space-2, 8px) 0;
+  font-size: var(--text-lg, 18px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-accent-light, #7cc4ff);
+  text-shadow: 0 0 15px rgba(80, 160, 255, 0.3);
 }
 
-
-/* =============================== */
-/* FOOTER BUTTONS */
-/* =============================== */
-
+/* ===================================
+   FOOTER BUTTONS
+   =================================== */
 .stepper-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
+  margin-top: var(--space-5, 20px);
 }
 
 .back-button {
   background: transparent;
-  color: #9fd3ff;
-  border: 1px solid rgba(0, 140, 255, 0.4);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  color: var(--color-text-secondary, #9fd3ff);
+  border: 1px solid var(--color-border, rgba(80, 160, 255, 0.4));
+  padding: var(--space-2, 8px) var(--space-4, 16px);
+  border-radius: var(--radius-md, 6px);
+  font-size: var(--text-xs, 11px);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: all var(--transition-fast, 150ms) ease;
 }
 
 .back-button:hover {
-  background: rgba(0, 140, 255, 0.15);
+  background: rgba(80, 160, 255, 0.15);
+  border-color: var(--color-border-hover, rgba(80, 160, 255, 0.6));
+  color: var(--color-text-white, #ffffff);
+  transform: none;
+  box-shadow: none;
 }
 
 .next-button {
   display: flex;
   align-items: center;
-  gap: 6px;
-
-  height: 32px;
-  padding: 5px 14px;
-
-  font-size: 10px;
+  gap: var(--space-2, 8px);
+  height: 38px;
+  padding: var(--space-2, 8px) var(--space-4, 18px);
+  font-size: var(--text-xs, 12px);
   font-weight: 700;
-  letter-spacing: 0.12em;
-
-  background: rgba(0, 140, 255, 0.15);
-  border: 1px solid rgba(0, 140, 255, 0.4);
-  border-radius: 4px;
-
-  color: #9fd3ff;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg,
+      rgba(80, 160, 255, 0.2),
+      rgba(40, 120, 255, 0.15));
+  border: 1px solid rgba(80, 160, 255, 0.5);
+  border-radius: var(--radius-md, 6px);
+  color: var(--color-text-secondary, #9fd3ff);
+  transition: all var(--transition-base, 250ms) ease;
 }
 
 .next-button:hover {
-  box-shadow: 0 0 5px #9fd3ff;
+  background: linear-gradient(135deg,
+      rgba(80, 160, 255, 0.3),
+      rgba(40, 120, 255, 0.25));
+  border-color: rgba(80, 160, 255, 0.8);
+  color: var(--color-text-white, #ffffff);
+  box-shadow:
+    0 0 20px rgba(80, 160, 255, 0.4),
+    0 0 40px rgba(80, 160, 255, 0.2);
+  transform: translateY(-1px);
 }
 
-
-/* =============================== */
-/* MOBILE SAFETY */
-/* =============================== */
-
+/* ===================================
+   RESPONSIVE
+   =================================== */
 @media (max-width: 420px) {
+  .outer-container {
+    max-width: 100%;
+    margin: 0 var(--space-3, 12px);
+  }
+
   .stepper-footer {
     flex-direction: column;
-    gap: 10px;
+    gap: var(--space-3, 12px);
   }
 
   .back-button,
@@ -202,4 +271,3 @@
     justify-content: center;
   }
 }
-

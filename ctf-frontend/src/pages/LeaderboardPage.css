@@ -1,0 +1,318 @@
+/* ===================================
+   LEADERBOARD PAGE
+   Premium Ranking Display
+   =================================== */
+
+.leaderboard-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ===================================
+   BACKGROUND
+   =================================== */
+.leaderboard-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
+
+/* ===================================
+   CONTENT WRAPPER
+   =================================== */
+.leaderboard-wrapper {
+    position: relative;
+    z-index: 1;
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: var(--space-12, 48px);
+}
+
+/* ===================================
+   LEADERBOARD CARD
+   =================================== */
+.leaderboard-card {
+    width: 700px;
+    max-width: 90vw;
+    background: var(--color-bg-card, rgba(10, 25, 50, 0.75));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border, rgba(80, 160, 255, 0.35));
+    border-radius: var(--radius-lg, 12px);
+    padding: var(--space-8, 32px);
+    color: var(--color-text-primary, #cfe9ff);
+    box-shadow:
+        0 0 60px rgba(80, 160, 255, 0.15),
+        0 25px 80px rgba(0, 0, 0, 0.5);
+    animation: cardSlideIn 0.6s ease forwards;
+}
+
+@keyframes cardSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+.leaderboard-header {
+    text-align: center;
+    margin-bottom: var(--space-8, 32px);
+}
+
+.leaderboard-title {
+    font-size: var(--text-3xl, 28px);
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: var(--color-text-white, #ffffff);
+    text-shadow: 0 0 30px rgba(80, 160, 255, 0.4);
+    margin: 0;
+}
+
+/* ===================================
+   TEAM ROW
+   =================================== */
+.team-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4, 16px) var(--space-5, 20px);
+    margin-bottom: var(--space-3, 12px);
+    border-radius: var(--radius-md, 8px);
+    background: rgba(0, 140, 255, 0.08);
+    border: 1px solid var(--color-border, rgba(80, 160, 255, 0.25));
+    transition: all var(--transition-base, 250ms) ease;
+    opacity: 0;
+    animation: rowSlideIn 0.4s ease forwards;
+}
+
+.team-row:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.team-row:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.team-row:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.team-row:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.team-row:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.team-row:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.team-row:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+.team-row:nth-child(8) {
+    animation-delay: 0.45s;
+}
+
+.team-row:nth-child(9) {
+    animation-delay: 0.5s;
+}
+
+.team-row:nth-child(10) {
+    animation-delay: 0.55s;
+}
+
+@keyframes rowSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.team-row:hover {
+    background: rgba(80, 160, 255, 0.12);
+    border-color: var(--color-border-hover, rgba(80, 160, 255, 0.5));
+    transform: translateX(4px);
+}
+
+/* ===================================
+   TOP 3 SPECIAL STYLING
+   =================================== */
+.team-row.rank-1 {
+    background: linear-gradient(135deg,
+            rgba(255, 215, 0, 0.15),
+            rgba(255, 180, 0, 0.1));
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.2),
+        inset 0 0 30px rgba(255, 215, 0, 0.05);
+}
+
+.team-row.rank-1:hover {
+    background: linear-gradient(135deg,
+            rgba(255, 215, 0, 0.2),
+            rgba(255, 180, 0, 0.15));
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.team-row.rank-2 {
+    background: linear-gradient(135deg,
+            rgba(192, 192, 192, 0.12),
+            rgba(150, 150, 150, 0.08));
+    border-color: rgba(192, 192, 192, 0.4);
+}
+
+.team-row.rank-3 {
+    background: linear-gradient(135deg,
+            rgba(205, 127, 50, 0.12),
+            rgba(180, 100, 30, 0.08));
+    border-color: rgba(205, 127, 50, 0.4);
+}
+
+/* ===================================
+   RANK BADGE
+   =================================== */
+.rank-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-full, 50%);
+    font-size: var(--text-sm, 14px);
+    font-weight: 700;
+    margin-right: var(--space-4, 16px);
+    background: rgba(80, 160, 255, 0.2);
+    border: 1px solid rgba(80, 160, 255, 0.4);
+    color: var(--color-text-secondary, #9fd3ff);
+}
+
+.rank-badge.gold {
+    background: linear-gradient(135deg, #ffd700, #ffb800);
+    border: none;
+    color: #1a1a2e;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    animation: trophyGlow 2s ease-in-out infinite;
+}
+
+.rank-badge.silver {
+    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+    border: none;
+    color: #1a1a2e;
+    box-shadow: 0 0 15px rgba(192, 192, 192, 0.4);
+}
+
+.rank-badge.bronze {
+    background: linear-gradient(135deg, #cd7f32, #a06020);
+    border: none;
+    color: #1a1a2e;
+    box-shadow: 0 0 15px rgba(205, 127, 50, 0.4);
+}
+
+@keyframes trophyGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 35px rgba(255, 215, 0, 0.8);
+    }
+}
+
+/* ===================================
+   TEAM INFO
+   =================================== */
+.team-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.team-name {
+    font-size: var(--text-base, 15px);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--color-text-primary, #cfe9ff);
+}
+
+.rank-1 .team-name {
+    color: var(--color-gold, #ffd700);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+/* ===================================
+   SCORE
+   =================================== */
+.team-score {
+    font-family: var(--font-mono, monospace);
+    font-size: var(--text-sm, 14px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.team-score .label {
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+.team-score .value {
+    color: var(--color-accent-light, #7cc4ff);
+    margin-left: var(--space-1, 4px);
+}
+
+.rank-1 .team-score .value {
+    color: var(--color-gold, #ffd700);
+}
+
+/* ===================================
+   EMPTY STATE
+   =================================== */
+.leaderboard-empty {
+    text-align: center;
+    padding: var(--space-12, 48px);
+    opacity: 0.6;
+    font-size: var(--text-sm, 14px);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+@media (max-width: 768px) {
+    .leaderboard-card {
+        padding: var(--space-5, 20px);
+    }
+
+    .leaderboard-title {
+        font-size: var(--text-2xl, 22px);
+        letter-spacing: 0.15em;
+    }
+
+    .team-row {
+        padding: var(--space-3, 12px) var(--space-4, 16px);
+    }
+
+    .rank-badge {
+        width: 28px;
+        height: 28px;
+        font-size: var(--text-xs, 12px);
+    }
+}
