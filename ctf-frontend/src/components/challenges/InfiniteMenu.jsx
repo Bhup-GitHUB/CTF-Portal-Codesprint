@@ -1068,20 +1068,6 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
             {activeItem.title}
           </h2>
 
-          {/* IMAGE */}
-          {activeItem.image && (
-            <img
-              src={activeItem.image}
-              alt={activeItem.title}
-              style={{
-                width: "120px",
-                margin: "12px auto",
-                display: "block",
-                filter: "drop-shadow(0 0 12px rgba(80,160,255,0.6))",
-              }}
-            />
-          )}
-
           {/* BUTTON */}
           <button
             className={`open-button ${isMoving ? "inactive" : "active"}`}
