@@ -1038,6 +1038,12 @@ export default function InfiniteMenu({ items = [], scale = 1.0 }) {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      {/* Hidden canvas for texture atlas rendering */}
+      <canvas
+        ref={hiddenCanvasRef}
+        style={{ display: "none" }}
+      />
+      
       {/* 🎯 MAIN CANVAS */}
       <canvas
         id="infinite-grid-menu-canvas"
